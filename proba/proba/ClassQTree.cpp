@@ -618,6 +618,9 @@ void ClassQTree::OutNodeV(QTreeStruct Node)
 		cout << "Visited: False"  << endl;
 	}
 
+	cout << "Color Average: " << int(Node.AvgColor.val[0])<< ";" << int(Node.AvgColor.val[1]) << ";" << int(Node.AvgColor.val[2]) << endl;
+	
+	cout << "Border Points: " << Node.numBorder << endl;
 
 	//cout << "Child: " << Node.Child << endl;
 
@@ -630,17 +633,17 @@ void ClassQTree::OutNodeV(QTreeStruct Node)
 
 	cout << "Level: " << Node.Level << endl; 
 
-	cout << "PrtitionID: " << Node.PartitionID << endl;
+	cout << "PartitionID: " << Node.PartitionID << endl;
 
 	cout << "ChildNumber: " << Node.ChildNum << endl;
 
 	cout << "RegionID: " << Node.RegionID << endl;
-
+/*
 	cout << "NorthID : " << Node.Env.NorthID << endl;
 	cout << "EastID: " << Node.Env.EastID << endl;
 	cout << "SouthID : " << Node.Env.SouthID << endl;
 	cout << "WestID: " << Node.Env.WestID << endl;
-
+*/
 	cout << "________" << endl;
 }
 
@@ -2271,12 +2274,12 @@ void ClassQTree::QAdd(QTreeStruct *&tQTree, int L, int Sq, TRect R, int Partitio
 
 //NW
 	CalcTR(TR, R, 1);
-/*
-	cout << "TR.Left: " << TR.Left << endl;
-	cout << "TR.Right: " << TR.Right<< endl;
-	cout << "TR.Top: " << TR.Top << endl;
-	cout << "TR.Bottom: " << TR.Bottom << endl;
-*/
+
+//	cout << "TR.Left: " << TR.Left << endl;
+//	cout << "TR.Right: " << TR.Right<< endl;
+//	cout << "TR.Top: " << TR.Top << endl;
+//	cout << "TR.Bottom: " << TR.Bottom << endl;
+
 	tQTree->NW = NULL;
 	tQTree->NW = new QTreeStruct;
 
@@ -2288,7 +2291,7 @@ void ClassQTree::QAdd(QTreeStruct *&tQTree, int L, int Sq, TRect R, int Partitio
 	tQTree->NW->AvgColor = AvgClr(TR);
 
 	//cout << "tQTree->NW->AvgColor: " << (int)tQTree->NW->AvgColor.val[0] << "; " << (int)tQTree->NW->AvgColor.val[1] << "; " 
-	//								 << (int)tQTree->NW->AvgColor.val[2] << endl;
+//									 << (int)tQTree->NW->AvgColor.val[2] << endl;
 
 
 	dd = CheckMDst(*tQTree->NW, TR);
@@ -2298,6 +2301,11 @@ void ClassQTree::QAdd(QTreeStruct *&tQTree, int L, int Sq, TRect R, int Partitio
 	tQTree->NW->numBorder = newBorderCheck(TR);
 
 	//cout << "tQTree->NW->numBorder: " << tQTree->NW->numBorder << endl;
+
+	//OutNodeV(*tQTree->NW);
+
+	//cout << "______________" << endl;
+	//cout << "______________" << endl;
 
 //END Optimization
 
@@ -2335,6 +2343,11 @@ void ClassQTree::QAdd(QTreeStruct *&tQTree, int L, int Sq, TRect R, int Partitio
 
 	tQTree->NE->numBorder = newBorderCheck(TR); 
 
+	//OutNodeV(*tQTree->NE);
+
+	//cout << "______________" << endl;
+	//cout << "______________" << endl;
+
 //END Optimization 
 
 	if((dd > this->T)||(tQTree->NE->numBorder  >= tt))//(tQTree->NE->numBorder > tt))
@@ -2368,6 +2381,11 @@ void ClassQTree::QAdd(QTreeStruct *&tQTree, int L, int Sq, TRect R, int Partitio
 	dd = CheckMDst(*tQTree->SW, TR);
 
 	tQTree->SW->numBorder = newBorderCheck(TR);
+
+	//OutNodeV(*tQTree->SW);
+
+	//cout << "______________" << endl;
+	//cout << "______________" << endl;
 //END Optimization 
 
 	if((dd > this->T)||(tQTree->SW->numBorder >= tt))//(tQTree->SW->numBorder > tt))
@@ -2401,6 +2419,11 @@ void ClassQTree::QAdd(QTreeStruct *&tQTree, int L, int Sq, TRect R, int Partitio
 	dd = CheckMDst(*tQTree->SE, TR);
 
 	tQTree->SE->numBorder = newBorderCheck(TR); 
+
+	//OutNodeV(*tQTree->SE);
+
+	//cout << "______________" << endl;
+	//cout << "______________" << endl;
 //END Optimization 
 
 

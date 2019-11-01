@@ -2,17 +2,19 @@
 
 #include "standartIncl.h"
 
+const double brd = 1;
+
 //_1 (split)
 //Detect step
 //const int t = 400;
 
-const double K = 0.8; 
+const double K = 2.0; 
 
 //Border step
 const int tt = 1;
 
 //Color step
-const int TT = 500;
+const int TT = 300;
 //end_1
 
 

@@ -1,5 +1,6 @@
 #include "KWThin.h"
 
+#include "TDataSource.h"
 
 KWThin::KWThin(cv::Mat & img): ClassZSThin(img)
 {
@@ -9,7 +10,6 @@ KWThin::KWThin(cv::Mat & img): ClassZSThin(img)
 //One Chanel IMG //WHITE Contours
 void KWThin::dellMinContours(cv::Mat& img)
 {
-	const double k = 1;
 	invertBinarImg(img);
 
 	vector<vector<cv::Point> > contour;
@@ -35,7 +35,9 @@ void KWThin::dellMinContours(cv::Mat& img)
 
 	cout << "tmpl: " << tmpl << endl;
 
-	cout << "tmpl*k: " << tmpl*k << endl;
+	cout << "tmpl*k: " << tmpl*brd << endl;
+
+	tmpl = 1200;
 
 	cv::Mat tmp = cv::Mat::zeros(img.rows, img.cols, CV_8UC1);
 	cv::Scalar color = ( 255, 255, 255 );
@@ -49,7 +51,7 @@ void KWThin::dellMinContours(cv::Mat& img)
 		{
 			cv::drawContours(tmp, contour, idx, color, 0, 8, hierarchy, 1);
 
-			//cout << cv::arcLength(contour[idx], false) << endl ;
+			//cout << contour[idx].size() << endl ;
 		}    
     }
 
